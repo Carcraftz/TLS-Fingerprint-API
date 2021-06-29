@@ -1,7 +1,7 @@
 # TLS-Fingerprint-API
 A server that proxies requests and uses CycleTLS to modify your clienthello and prevent your requests from being fingerprinted.
 
-#How to use:
+## How to use:
 
 Deploy this server somewhere. Localhost is preferrable to reduce latency. 
 
