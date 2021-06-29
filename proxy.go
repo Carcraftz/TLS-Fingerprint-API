@@ -32,6 +32,7 @@ func main() {
 
 }
 func handleReq(w http.ResponseWriter, r *http.Request) {
+	defer r.Body.Close()
 	fetchmode := "GET"
 	switch r.Method {
 		case http.MethodPost:
@@ -52,12 +53,10 @@ func handleReq(w http.ResponseWriter, r *http.Request) {
 	if (len(r.Header["Poptls-Url"]) == 0) {
 		fmt.Println("NO PAGE URL")
 		sendRes(w, "ERROR: No Page URL Provided")
-		r.Body.Close()
 
 	}
 	if (len(r.Header["User-Agent"]) == 0) {
 		sendRes(w, "ERROR: No User Agent Provided")
-		r.Body.Close()
 	}
 	cond1 := (len(r.Header["Poptls-Url"]) > 0)
 	cond2 := (len(r.Header["User-Agent"]) > 0)
@@ -131,7 +130,6 @@ func handleReq(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(response.Response.Status)
 		sendRes(w, bodyStr)
 		//fmt.Println(bodyStr)
-		r.Body.Close()
 
 	}
 }
