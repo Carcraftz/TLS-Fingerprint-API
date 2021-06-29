@@ -34,16 +34,16 @@ func main() {
 func handleReq(w http.ResponseWriter, r *http.Request) {
 	fetchmode := "GET"
 	switch r.Method {
-	case http.MethodPost:
-		fetchmode = "POST"
-	case http.MethodPut:
-		fetchmode = "PUT"
-	case http.MethodDelete:
-		fetchmode = "DELETE"
-	case http.MethodOptions:
-		fetchmode = "OPTIONS"
-	default:
-		fetchmode = "GET"
+		case http.MethodPost:
+			fetchmode = "POST"
+		case http.MethodPut:
+			fetchmode = "PUT"
+		case http.MethodDelete:
+			fetchmode = "DELETE"
+		case http.MethodOptions:
+			fetchmode = "OPTIONS"
+		default:
+			fetchmode = "GET"
 	}
 	fmt.Println(fetchmode)
 
