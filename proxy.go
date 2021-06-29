@@ -49,16 +49,14 @@ func handleReq(w http.ResponseWriter, r *http.Request) {
 
 	useproxy := len(r.Header["Poptls-Proxy"]) > 0
 	//make sure required info is provided
-	if !(len(r.Header["Poptls-Url"]) > 0) {
+	if (len(r.Header["Poptls-Url"]) == 0) {
 		fmt.Println("NO PAGE URL")
 		sendRes(w, "ERROR: No Page URL Provided")
-
 		r.Body.Close()
 
 	}
-	if !(len(r.Header["User-Agent"]) > 0) {
+	if (len(r.Header["User-Agent"]) == 0) {
 		sendRes(w, "ERROR: No User Agent Provided")
-
 		r.Body.Close()
 	}
 	cond1 := (len(r.Header["Poptls-Url"]) > 0)
