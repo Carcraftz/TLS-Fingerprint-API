@@ -33,17 +33,17 @@ func main() {
 }
 func handleReq(w http.ResponseWriter, r *http.Request) {
 	fetchmode := "GET"
-	if r.Method == http.MethodPost {
-		fetchmode = "POST"
-	}
-	if r.Method == http.MethodPut {
-		fetchmode = "PUT"
-	}
-	if r.Method == http.MethodDelete {
-		fetchmode = "DELETE"
-	}
-	if r.Method == http.MethodOptions {
-		fetchmode = "OPTIONS"
+	switch r.Method {
+    case http.MethodPost:
+      fetchmode = "POST"
+    case http.MethodPut:
+      fetchmode = "PUT"
+    case http.MethodDelete:
+      fetchmode = "DELETE"
+    case http.MethodOptions:
+      fetchmode = "OPTIONS"
+    default:
+      fetchmode = "GET"
 	}
 	fmt.Println(fetchmode)
 
@@ -123,7 +123,7 @@ func handleReq(w http.ResponseWriter, r *http.Request) {
 			log.Print("Request Failed: " + err.Error())
 		}
 		for k, v := range response.Response.Headers {
-      //we want go to handle decoding the files, so don't forward the content encoding and length headers
+			//we want go to handle decoding the files, so don't forward the content encoding and length headers
 			if k != "Content-Length" && k != "Content-Encoding" {
 				w.Header().Set(k, v)
 			}
