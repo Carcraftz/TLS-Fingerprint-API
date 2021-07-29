@@ -28,11 +28,11 @@ By default the program runs on port 8082. You can specify another port by passin
 ### Node.js
 
 To call this in node.js, lets say with node-fetch, you could do
-
+```
 fetch("http://localhost:8082",{
 headers:{
 "poptls-url":"https://httpbin.org/get",
 "poptls-proxy":"https://user:pass@ip:port", //optional
 "poptls-allowredirect:"true" //optional (TRUE by default)
 }
-})
+})```
