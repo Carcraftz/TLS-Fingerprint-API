@@ -1,6 +1,6 @@
 # TLS-Fingerprint-API
 
-A server that proxies requests and uses my fork of CycleTLS & fhttp (fork of net/http) to prevent your requests from being fingerprinted. Built on open source software, this repo is a simple yet effective solution to censorship. It uses CycleTLS to spoof tls fingerprints, and fhttp to enable mimicry of chrome http/2 connection settings, header order, pseudo header order, and enable push. 
+A server that proxies requests and uses my fork of CycleTLS & fhttp (fork of net/http) to prevent your requests from being fingerprinted. Built on open source software, this repo is a simple yet effective solution to censorship. It uses CycleTLS to spoof tls fingerprints, and fhttp to enable mimicry of chrome http/2 connection settings, header order, pseudo header order, and enable push.
 
 ## Support
 
