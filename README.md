@@ -20,6 +20,7 @@ Optional: Add the request header "poptls-proxy" and set it equal to the URL for 
 Optional: Add the request header "poptls-allowredirect" and set it to true or false to enable/disable redirects. Redirects are enabled by default.
 
 ## Run on a different Port:
+
 By default the program runs on port 8082. You can specify another port by passing a flag --port=PORTNUM
 
 ## Examples:
@@ -30,8 +31,8 @@ To call this in node.js, lets say with node-fetch, you could do
 
 fetch("http://localhost:8082",{
 headers:{
-  "poptls-url":"https://httpbin.org/get",
-  "poptls-proxy":"https://user:pass@ip:port", //optional
-  "poptls-allowredirect:"true" //optional (TRUE by default)
+"poptls-url":"https://httpbin.org/get",
+"poptls-proxy":"https://user:pass@ip:port", //optional
+"poptls-allowredirect:"true" //optional (TRUE by default)
 }
 })
