@@ -1,6 +1,6 @@
 # TLS-Fingerprint-API
 
-A server that proxies requests and uses CycleTLS & fhttp (fork of net/http) to modify your clienthello and prevent your requests from being fingerprinted.
+A server that proxies requests and uses my fork of CycleTLS & fhttp (fork of net/http) to modify your clienthello and prevent your requests from being fingerprinted.
 
 ## How to use:
 
