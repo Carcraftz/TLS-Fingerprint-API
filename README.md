@@ -1,6 +1,6 @@
 # TLS-Fingerprint-API
 
-A server that proxies requests and uses my fork of CycleTLS & fhttp (fork of net/http) to prevent your requests from being fingerprinted. Built on open source software, this repo is a simple yet effective solution to censorship. It uses CycleTLS to spoof tls fingerprints, and fhttp to enable mimicry of chrome http/2 connection settings, header order, pseudo header order, and enable push.
+A server that proxies requests and uses my fork of cclient & fhttp (fork of net/http) to prevent your requests from being fingerprinted. Built on open source software, this repo is a simple yet effective solution to censorship. It uses cclient to spoof tls fingerprints, and fhttp to enable mimicry of chrome http/2 connection settings, header order, pseudo header order, and enable push.
 
 ## Support
 
@@ -18,6 +18,8 @@ Add the request header "poptls-url", and set it equal to the endpoint you want t
 Optional: Add the request header "poptls-proxy" and set it equal to the URL for the proxy you want to use (format: http://user:pass@host:port or http://host:port). This will make the server use your proxy for the request.
 
 Optional: Add the request header "poptls-allowredirect" and set it to true or false to enable/disable redirects. Redirects are enabled by default.
+
+Optional: Add the request header "poptls-timeout" and set it to an integer (in seconds) to specify the max timeout to wait for a request.
 
 ## Run on a different Port:
 
