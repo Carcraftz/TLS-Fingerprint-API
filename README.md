@@ -5,7 +5,7 @@ A server that proxies requests and uses my fork of cclient & fhttp (fork of net/
 ## Support
 
 I decided to make this after being tired of similar software being gatekept in the community, no one should have to pay over 3k for this. If you like my work, any support would be greatly appreciated ❤️
-https://paypal.me/carcraftz?locale.x=en_US
+https://paypal.me/carcraftz
 
 ## How to use:
 
