@@ -9,7 +9,7 @@ https://paypal.me/carcraftz
 
 ## How to use:
 
-Deploy this server somewhere. Localhost is preferrable to reduce latency.
+Deploy this server somewhere. Localhost is preferrable to reduce latency. The go source code is given if you want to build it yourself on any platform (windows, macos, linux). I will also be attaching a prebuilt windows exe if you don't want to build it yourself
 
 Modify your code to make requests to the server INSTEAD of the endpoint you want to request. Ex: If running on localhost, make requests to http://127.0.0.1:8082. Make sure to also remove any code that uses a proxy in the request.
 
