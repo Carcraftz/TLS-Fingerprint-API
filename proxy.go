@@ -160,11 +160,6 @@ func handleReq(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	for k := range r.Header {
-		if k != "Content-Length" && !strings.Contains(k, "Poptls") {
-			req.Header.Set(k, r.Header.Get(k))
-		}
-	}
 	//ordering the pseudo headers and our normal headers
 	req.Header = http.Header{
 		http.HeaderOrderKey:  headerorderkey,
@@ -175,8 +170,15 @@ func handleReq(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
+	//append our normal headers
+	for k := range r.Header {
+		if k != "Content-Length" && !strings.Contains(k, "Poptls") {
+			fmt.Println("LOOPING: " + r.Header.Get(k))
+			v := r.Header.Get(k)
+			req.Header.Set(k, v)
+		}
+	}
 	req.Header.Set("Host", u.Host)
-
 	resp, err := client.Do(req)
 	if err != nil {
 		panic(err)
