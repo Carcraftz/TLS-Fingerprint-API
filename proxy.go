@@ -19,7 +19,7 @@ import (
 
 	http "github.com/Carcraftz/fhttp"
 
-	tls "github.com/Titanium-ctrl/utls"
+	tls "github.com/Carcraftz/utls"
 )
 
 //var client http.Client
