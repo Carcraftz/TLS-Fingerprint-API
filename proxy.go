@@ -56,9 +56,11 @@ func handleReq(w http.ResponseWriter, r *http.Request) {
 
 	//Handle Proxy (http://host:port or http://user:pass@host:port)
 	proxy := r.Header.Get("Poptls-Proxy")
-	if proxy != "" {
-		r.Header.Del("Poptls-Proxy")
+	if proxy == "" {
+		http.Error(w, "ERROR: No Proxy Provided (A proxy is needed to use this public version of the API). Format (http://host:port or http://user:pass@host:port)", http.StatusBadRequest)
+		return		
 	}
+	r.Header.Del("Poptls-Proxy")
 	//handle redirects and timeouts
 	redirectVal := r.Header.Get("Poptls-Allowredirect")
 	allowRedirect := true
