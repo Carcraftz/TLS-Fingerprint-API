@@ -25,12 +25,12 @@ import (
 //var client http.Client
 
 func main() {
-	port := *flag.String("port", "8082", "A port number (default 8082)")
+	port := flag.String("port", "8082", "A port number (default 8082)")
 	flag.Parse()
-	fmt.Println("Hosting a TLS API on port " + port)
+	fmt.Println("Hosting a TLS API on port " + *port)
 	fmt.Println("If you like this API, all donations are appreciated! https://paypal.me/carcraftz")
 	http.HandleFunc("/", handleReq)
-	err := http.ListenAndServe(":"+string(port), nil)
+	err := http.ListenAndServe(":"+string(*port), nil)
 	if err != nil {
 		log.Fatalln("Error starting the HTTP server:", err)
 	}
