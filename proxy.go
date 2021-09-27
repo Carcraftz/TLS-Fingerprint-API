@@ -190,7 +190,9 @@ func handleReq(w http.ResponseWriter, r *http.Request) {
 	//forward response headers
 	for k, v := range resp.Header {
 		if k != "Content-Length" && k != "Content-Encoding" {
-			w.Header().Set(k, v[0])
+			for _, kv := range v {
+				w.Header().Add(k, kv)
+			}
 		}
 	}
 	w.WriteHeader(resp.StatusCode)
