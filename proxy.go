@@ -147,7 +147,7 @@ func handleReq(w http.ResponseWriter, r *http.Request) {
 	//TODO: REDUCE TIME COMPLEXITY (This code is very bad)
 	headerorderkey := []string{}
 	for _, key := range masterheaderorder {
-		for k, v := range req.Header {
+		for k, v := range r.Header {
 			lowercasekey := strings.ToLower(k)
 			if key == lowercasekey {
 				headermap[k] = v[0]
