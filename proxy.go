@@ -100,11 +100,14 @@ func handleReq(w http.ResponseWriter, r *http.Request) {
 		addedQuery += "&" + k + "=" + v[0]
 	}
 
-	endpoint := pageURL + "?" + addedQuery
-	if strings.Contains(pageURL, "?") {
-		endpoint = pageURL + addedQuery
-	} else if addedQuery != "" {
-		endpoint = pageURL + "?" + addedQuery[1:]
+	endpoint := pageURL
+	if len(addedQuery) != 0 {
+		endpoint = pageURL + "?" + addedQuery
+		if strings.Contains(pageURL, "?") {
+			endpoint = pageURL + addedQuery
+		} else if addedQuery != "" {
+			endpoint = pageURL + "?" + addedQuery[1:]
+		}
 	}
 	req, err := http.NewRequest(r.Method, ""+endpoint, r.Body)
 	if err != nil {
