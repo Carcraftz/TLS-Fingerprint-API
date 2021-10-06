@@ -100,11 +100,14 @@ func handleReq(w http.ResponseWriter, r *http.Request) {
 		addedQuery += "&" + k + "=" + v[0]
 	}
 
-	endpoint := pageURL + "?" + addedQuery
-	if strings.Contains(pageURL, "?") {
-		endpoint = pageURL + addedQuery
-	} else if addedQuery != "" {
-		endpoint = pageURL + "?" + addedQuery[1:]
+	endpoint := pageURL
+	if len(addedQuery) != 0 {
+		endpoint = pageURL + "?" + addedQuery
+		if strings.Contains(pageURL, "?") {
+			endpoint = pageURL + addedQuery
+		} else if addedQuery != "" {
+			endpoint = pageURL + "?" + addedQuery[1:]
+		}
 	}
 	req, err := http.NewRequest(r.Method, ""+endpoint, r.Body)
 	if err != nil {
@@ -144,7 +147,7 @@ func handleReq(w http.ResponseWriter, r *http.Request) {
 	//TODO: REDUCE TIME COMPLEXITY (This code is very bad)
 	headerorderkey := []string{}
 	for _, key := range masterheaderorder {
-		for k, v := range req.Header {
+		for k, v := range r.Header {
 			lowercasekey := strings.ToLower(k)
 			if key == lowercasekey {
 				headermap[k] = v[0]
@@ -190,7 +193,9 @@ func handleReq(w http.ResponseWriter, r *http.Request) {
 	//forward response headers
 	for k, v := range resp.Header {
 		if k != "Content-Length" && k != "Content-Encoding" {
-			w.Header().Set(k, v[0])
+			for _, kv := range v {
+				w.Header().Add(k, kv)
+			}
 		}
 	}
 	w.WriteHeader(resp.StatusCode)
