@@ -4,6 +4,7 @@ import (
 	"compress/zlib"
 	"flag"
 	"fmt"
+	"github.com/fatih/color"
 	"io/ioutil"
 	"log"
 	"strconv"
@@ -176,7 +177,6 @@ func handleReq(w http.ResponseWriter, r *http.Request) {
 	//append our normal headers
 	for k := range r.Header {
 		if k != "Content-Length" && !strings.Contains(k, "Poptls") {
-			fmt.Println("LOOPING: " + r.Header.Get(k))
 			v := r.Header.Get(k)
 			req.Header.Set(k, v)
 		}
@@ -184,7 +184,19 @@ func handleReq(w http.ResponseWriter, r *http.Request) {
 	req.Header.Set("Host", u.Host)
 	resp, err := client.Do(req)
 	if err != nil {
-		panic(err)
+		fmt.Printf("[%s][%s][%s]\r\n", color.YellowString("%s", time.Now().Format("2012-11-01T22:08:41+00:00")), color.BlueString("%s", pageURL), color.RedString("Connection Failed"))
+		hj, ok := w.(http.Hijacker)
+		if !ok {
+			panic(err)
+		}
+		conn, _, err := hj.Hijack()
+		if err != nil {
+			panic(err)
+		}
+		if err := conn.Close(); err != nil {
+			panic(err)
+		}
+		return
 	}
 	defer resp.Body.Close()
 
@@ -199,7 +211,13 @@ func handleReq(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	w.WriteHeader(resp.StatusCode)
-	fmt.Println(resp.StatusCode)
+	var status string
+	if resp.StatusCode > 302 {
+		status = color.RedString("%s", resp.Status)
+	} else {
+		status = color.GreenString("%s", resp.Status)
+	}
+	fmt.Printf("[%s][%s][%s]\r\n", color.YellowString("%s", time.Now().Format("2012-11-01T22:08:41+00:00")), color.BlueString("%s", pageURL), status)
 
 	//forward decoded response body
 	encoding := resp.Header["Content-Encoding"]
