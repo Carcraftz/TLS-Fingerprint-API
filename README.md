@@ -1,10 +1,10 @@
 # TLS-Fingerprint-API
 
-A server that proxies requests and uses my fork of cclient & fhttp (fork of net/http) to prevent your requests from being fingerprinted. Built on open source software, this repo is a simple yet effective solution to censorship. It uses cclient to spoof tls fingerprints, and fhttp to enable mimicry of chrome http/2 connection settings, header order, pseudo header order, and enable push.
+A server that proxies requests and uses my fork of cclient & fhttp (fork of net/http) to prevent your requests from being fingerprinted. Built on open source software, this repo is a simple yet effective solution to companies violating your privacy. It uses cclient to spoof tls fingerprints, and fhttp to enable mimicry of chrome http/2 connection settings, header order, pseudo header order, and enable push.
 
 ## Support
 
-I decided to make this after being tired of similar software being gatekept in the community, no one should have to pay over 3k for this. If you like my work, any support would be greatly appreciated ❤️
+I decided to make this after being tired of similar software being gatekept. If you like my work, any support would be greatly appreciated ❤️
 https://paypal.me/carcraftz
 
 ## How to use:
