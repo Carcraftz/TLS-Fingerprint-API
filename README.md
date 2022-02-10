@@ -9,7 +9,7 @@ https://paypal.me/carcraftz
 
 ## How to use:
 
-Note: If you're using this in a language other than go, then use this repo. But if you're using this in go, I would reccomend using my fork of cclient instead (github.com/Carcraftz/cclient), which lets you access the request library directly instead of deploying a HTTP server on the localhost. The only difference is it doesn't set header order for you, you have to specify the header order yourself in the request.
+Note: If you're using this in a language other than go, then use this repo. But if you're using this in go, I would reccomend using my fork of cclient instead (https://github.com/Carcraftz/cclient), which lets you access the request library directly instead of deploying a HTTP server on the localhost. The only difference is it doesn't set header order for you, you have to specify the header order yourself in the request.
 
 Deploy this server somewhere. Localhost is preferrable to reduce latency. The go source code is given if you want to build it yourself on any platform (windows, macos, linux). I will also be attaching a prebuilt windows exe if you don't want to build it yourself
 
