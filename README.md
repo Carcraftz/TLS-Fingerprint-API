@@ -2,6 +2,12 @@
 
 A server that proxies requests and uses my fork of cclient & fhttp (fork of net/http) to prevent your requests from being fingerprinted. Built on open source software, this repo is a simple yet effective solution to companies violating your privacy. It uses cclient to spoof tls fingerprints, and fhttp to enable mimicry of chrome http/2 connection settings, header order, pseudo header order, and enable push.
 
+## Table of content
+- [Support](#support)
+- [How to use](#how-to-use)
+- [Examples](#examples)
+  - [Node.js](#nodejs)
+
 ## Support
 
 I decided to make this after being tired of similar software being gatekept. If you like my work, any support would be greatly appreciated ❤️
