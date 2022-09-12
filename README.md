@@ -3,6 +3,7 @@
 A server that proxies requests and uses my fork of cclient & fhttp (fork of net/http) to prevent your requests from being fingerprinted. Built on open source software, this repo is a simple yet effective solution to companies violating your privacy. It uses cclient to spoof tls fingerprints, and fhttp to enable mimicry of chrome http/2 connection settings, header order, pseudo header order, and enable push.
 
 ## Table of content
+
 - [Support](#support)
 - [How to use](#how-to-use)
 - [Examples](#examples)
@@ -40,15 +41,13 @@ By default the program runs on port 8082. You can specify another port by passin
 To call this in node.js, lets say with node-fetch, you could do
 
 ```js
-fetch(
-  "http://localhost:8082",
-  {
-    headers: {
-      "poptls-url": "https://httpbin.org/get",
-      "poptls-proxy": "https://user:pass@ip:port", //optional
-      "poptls-allowredirect": "true", //optional (TRUE by default)
-      "user-agent": "Mozilla/5.0 (X11; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0"
-    }
-  }
-)
+fetch("http://localhost:8082", {
+  headers: {
+    "poptls-url": "https://httpbin.org/get",
+    "poptls-proxy": "https://user:pass@ip:port", //optional
+    "poptls-allowredirect": "true", //optional (TRUE by default)
+    "user-agent":
+      "Mozilla/5.0 (X11; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0",
+  },
+});
 ```
