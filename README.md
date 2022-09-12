@@ -2,6 +2,13 @@
 
 A server that proxies requests and uses my fork of cclient & fhttp (fork of net/http) to prevent your requests from being fingerprinted. Built on open source software, this repo is a simple yet effective solution to companies violating your privacy. It uses cclient to spoof tls fingerprints, and fhttp to enable mimicry of chrome http/2 connection settings, header order, pseudo header order, and enable push.
 
+## Table of content
+
+- [Support](#support)
+- [How to use](#how-to-use)
+- [Examples](#examples)
+  - [Node.js](#nodejs)
+
 ## Support
 
 I decided to make this after being tired of similar software being gatekept. If you like my work, any support would be greatly appreciated ❤️
@@ -15,7 +22,7 @@ Deploy this server somewhere. Localhost is preferrable to reduce latency. The go
 
 Modify your code to make requests to the server INSTEAD of the endpoint you want to request. Ex: If running on localhost, make requests to http://127.0.0.1:8082. Make sure to also remove any code that uses a proxy in the request.
 
-Add the request header "poptls-url", and set it equal to the endpoint you want to request. For example, if you want to request https://httpbin.org/get, you would add the header "poptls-url" = "https://httpbin.org/get"
+Add the request header "poptls-url", and set it equal to the endpoint you want to request. For example, if you want to request https://httpbin.org/get, you would add the header "poptls-url" = "https://httpbin.org/get". Also you need to add the "user-agent" header.
 
 Optional: Add the request header "poptls-proxy" and set it equal to the URL for the proxy you want to use (format: http://user:pass@host:port or http://host:port). This will make the server use your proxy for the request.
 
@@ -33,12 +40,14 @@ By default the program runs on port 8082. You can specify another port by passin
 
 To call this in node.js, lets say with node-fetch, you could do
 
-````
-fetch("http://localhost:8082",{
-headers:{
-"poptls-url":"https://httpbin.org/get",
-"poptls-proxy":"https://user:pass@ip:port", //optional
-"poptls-allowredirect:"true" //optional (TRUE by default)
-}
-})```
-````
+```js
+fetch("http://localhost:8082", {
+  headers: {
+    "poptls-url": "https://httpbin.org/get",
+    "poptls-proxy": "https://user:pass@ip:port", //optional
+    "poptls-allowredirect": "true", //optional (TRUE by default)
+    "user-agent":
+      "Mozilla/5.0 (X11; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0",
+  },
+});
+```
